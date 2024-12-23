@@ -1,0 +1,21 @@
+
+name: Kirim Formulir ke Email
+
+on:
+  repository_dispatch:
+    types: [form-submitted]
+
+jobs:
+  send-email:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Kirim Email
+        env:
+          EMAIL: "smartaffiliatee@gmail.com"
+          PASSWORD: "${secrets.EMAIL_PASSWORD}"
+        run: |
+          curl -X POST \
+          (link unavailable) \
+          -H 'Authorization: Bearer ${GITHUB_TOKEN}' \
+          -H 'Content-Type: application/json' \
+          -d '{"event_type":"form-submitted","client_payload":{"email":"${EMAIL}"}}'
